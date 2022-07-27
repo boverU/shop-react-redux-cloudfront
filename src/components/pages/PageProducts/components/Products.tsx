@@ -43,7 +43,7 @@ export default function Products() {
 
   useEffect(() => {
     axios.get(`${API_PATHS.product}/products`)
-      .then(res => setProducts(res.data));
+      .then(res => setProducts(res.data.map((product: Product) => ({ ...product, photo: "https://m.media-amazon.com/images/I/61PK1r9jWLL._AC_UL480_FMwebp_QL65_.jpg" }))));
   }, [])
 
   return (
