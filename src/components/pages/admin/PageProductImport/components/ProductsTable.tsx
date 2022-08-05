@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import API_PATHS from "constants/apiPaths";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -10,13 +10,13 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from "@material-ui/core/Button";
-import {formatAsPrice} from "utils/utils";
+import { formatAsPrice } from "utils/utils";
 
 export default function ProductsTable() {
   const [products, setProducts] = useState<any>([]);
 
   useEffect(() => {
-    axios.get(`${API_PATHS.bff}/product`)
+    axios.get(`${API_PATHS.bff}/products`)
       .then(res => setProducts(res.data));
   }, []);
 
@@ -25,7 +25,7 @@ export default function ProductsTable() {
       .then(() => {
         axios.get(`${API_PATHS.bff}/product`)
           .then(res => setProducts(res.data));
-        }
+      }
       );
   };
 
@@ -52,10 +52,10 @@ export default function ProductsTable() {
               <TableCell align="right">{formatAsPrice(product.price)}</TableCell>
               <TableCell align="right">{product.count}</TableCell>
               <TableCell align="right">
-                <Button size="small" color="primary" component={Link} to={`/admin/product-form/${product.id}`}>
+                <Button disabled size="small" color="primary" component={Link} to={`/admin/product-form/${product.id}`}>
                   Manage
                 </Button>
-                <Button size="small" color="secondary" onClick={() => onDelete(product.id)}>
+                <Button disabled size="small" color="secondary" onClick={() => onDelete(product.id)}>
                   Delete
                 </Button>
               </TableCell>
