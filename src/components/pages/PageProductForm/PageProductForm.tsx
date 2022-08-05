@@ -112,7 +112,9 @@ export default function PageProductForm() {
     if (!id) {
       axios({
         method: "POST", url: `${API_PATHS.bff}/products`, data: productToSave, headers: {
-          'content-type': 'application/json'
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "*",
+          'Accept': 'application/json'
         }
       })
         .then(() => history.push('/admin/products')).catch(err => console.log(err));
